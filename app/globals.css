@@ -1,26 +1,95 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Palette */
+  --color-bg: #0d0d0f;
+  --color-fg: #e7e4dd;
+  --color-heading: #f4f1ea;
+  --color-accent: #c99b52;
+  --color-muted: #a5a29a;
+  --color-subtle: #9a9790;
+  --color-dim: #807d76;
+  --color-faint: #5f5d57;
+
+  /* Fonts (variables injected by next/font in layout) */
+  --font-head: var(--font-cormorant), serif;
+  --font-body: var(--font-lora), Georgia, serif;
+  --font-mono: var(--font-jetbrains), monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
+
+::selection {
+  background: rgba(201, 155, 82, 0.28);
+  color: #f3f0ea;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Nav link underline */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -4px;
+  height: 1px;
+  background: var(--color-accent);
+  transition: right 0.28s ease;
+}
+.nav-link:hover::after {
+  right: 0;
+}
+
+/* Buttons */
+.btn {
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.btn-primary:hover {
+  background: var(--color-accent);
+  color: #0d0d0f;
+}
+.btn-ghost:hover {
+  border-color: var(--color-accent);
+  color: #f3f0ea;
+}
+
+/* Skill badges */
+.badge {
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.badge:hover {
+  border-color: var(--color-accent);
+  color: #f3f0ea;
+}
+
+/* Project cards */
+.card {
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.card:hover {
+  border-color: rgba(201, 155, 82, 0.5);
+  transform: translateY(-3px);
+}
+
+/* Contact links */
+.contact-link {
+  transition: color 0.2s ease;
+}
+.contact-link:hover {
+  color: var(--color-accent);
 }
