@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { Cormorant_Garamond, Lora, JetBrains_Mono } from "next/font/google";
 import { site, skills } from "@/lib/constants";
 import "./globals.css";
+import { Analytics } from '@vercel/analytics/next';
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -117,6 +118,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
