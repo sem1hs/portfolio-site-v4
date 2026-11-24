@@ -1,40 +1,36 @@
-import { GridBackground } from "@/components/GridBackground";
-import { Nav } from "@/components/Nav";
+import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
-import { Skills } from "@/components/Skills";
+import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
+import { Skills } from "@/components/Skills";
+import { Education } from "@/components/Education";
 import { Contact } from "@/components/Contact";
-import { Footer } from "@/components/Footer";
-import { Reveal } from "@/components/Reveal";
+import { site } from "@/lib/constants";
 
 export default function Home() {
   return (
     <>
-      <GridBackground />
-      <div className="relative z-[1] mx-auto max-w-[1040px] px-6 sm:px-8">
-        <Nav />
-        <main>
-          <Reveal>
-            <Hero />
-          </Reveal>
-          <Reveal>
-            <About />
-          </Reveal>
-          <Reveal>
-            <Skills />
-          </Reveal>
-          <Reveal>
-            <Projects />
-          </Reveal>
-          <Reveal>
-            <Contact />
-          </Reveal>
-        </main>
-        <Reveal>
-          <Footer />
-        </Reveal>
-      </div>
+      <Header />
+      <main className="mx-auto max-w-[960px] px-5 sm:px-7">
+        <Hero />
+        <About />
+        <Experience />
+        <Projects />
+        <Skills />
+        <Education />
+        <Contact />
+      </main>
+      <footer className="mt-10 border-t border-line">
+        <div className="mx-auto flex max-w-[960px] flex-wrap justify-between gap-2 px-5 py-6 text-[12px] text-dim sm:px-7">
+          <span>
+            © {new Date().getFullYear()} {site.name}
+          </span>
+          <a href="#top" className="hover:text-accent">
+            cd ~ ↑
+          </a>
+        </div>
+      </footer>
     </>
   );
 }

@@ -1,28 +1,30 @@
 import { about } from "@/lib/constants";
-import { SectionLabel } from "@/components/SectionLabel";
+import { SectionTitle } from "@/components/SectionTitle";
+import { Reveal } from "@/components/Reveal";
 
 export function About() {
   return (
-    <section
-      id="about"
-      className="grid grid-cols-1 gap-8 border-t border-white/8 py-16 sm:py-24 md:grid-cols-[220px_1fr] md:gap-14"
-    >
-      <div>
-        <SectionLabel index={about.index}>{about.label}</SectionLabel>
-      </div>
-      <div className="max-w-[620px]">
-        <p className="m-0 mb-[26px] font-head text-[clamp(24px,3.2vw,32px)] font-normal leading-[1.35] text-[#e9e6df]">
-          {about.lead.pre}
-          <span className="italic text-accent">{about.lead.em}</span>
-          {about.lead.post}
-        </p>
-        {about.paragraphs.map((p, i) => (
-          <p
-            key={i}
-            className="m-0 mb-5 text-base leading-[1.8] text-muted text-pretty last:mb-0"
-          >
+    <section id="about" className="py-12 sm:py-16">
+      <SectionTitle index={about.index}>hakkimda</SectionTitle>
+      <Reveal>
+        <p className="m-0 text-[17px] leading-[1.6] font-bold text-fg">{about.heading}</p>
+        {about.paragraphs.map((p) => (
+          <p key={p} className="m-0 mt-4 max-w-[760px] text-[14.5px] leading-[1.85]">
             {p}
           </p>
+        ))}
+      </Reveal>
+      <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {about.stats.map((s, i) => (
+          <Reveal key={s.label} delay={i * 80}>
+            <div className="rounded-lg border border-line bg-panel px-4 py-4">
+              <div className="text-[28px] leading-none font-bold text-fg">
+                {s.value}
+                <span className="text-accent">{s.suffix}</span>
+              </div>
+              <div className="mt-2 text-[12px] text-dim">{s.label}</div>
+            </div>
+          </Reveal>
         ))}
       </div>
     </section>

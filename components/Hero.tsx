@@ -1,47 +1,68 @@
+import type { CSSProperties } from "react";
 import { hero, site } from "@/lib/constants";
+import { Typewriter } from "@/components/Typewriter";
 import { GitHubIcon } from "@/components/icons/GitHubIcon";
 import { LinkedInIcon } from "@/components/icons/LinkedInIcon";
 
+const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
+
 export function Hero() {
   return (
-    <header id="top" className="max-w-[840px] pt-20 pb-24 sm:pt-[132px] sm:pb-[128px]">
-      <div className="mb-[30px] flex items-center gap-[14px]">
-        <span className="h-px w-[34px] bg-accent" />
-        <span className="font-mono text-xs uppercase tracking-[0.24em] text-accent">
-          {hero.label}
-        </span>
-      </div>
-
-      <h1 className="m-0 font-head text-[clamp(44px,7.2vw,88px)] font-medium leading-[1.03] tracking-[-0.01em] text-heading">
-        {hero.title.line1}
-        <br />
-        <span className="italic text-[#cfcbc1]">{hero.title.emphasis}</span>
+    <section id="top" className="pt-20 pb-16 sm:pt-28 sm:pb-24">
+      <p className="appear m-0 text-[14px] text-accent" style={d(0)}>
+        $ whoami
+      </p>
+      <h1
+        className="appear m-0 mt-4 text-[clamp(36px,6vw,60px)] leading-[1.1] font-bold tracking-[-0.02em] text-fg"
+        style={d(150)}
+      >
+        {site.name}
       </h1>
-
-      <p className="mt-[34px] max-w-[600px] text-[clamp(16px,2vw,19px)] leading-[1.7] text-muted text-pretty">
+      <p className="appear m-0 mt-4 min-h-[1.6em] text-[clamp(15px,2vw,18px)] text-accent-2" style={d(300)}>
+        &gt; <Typewriter words={hero.roles} />
+      </p>
+      <p className="appear m-0 mt-6 max-w-[640px] text-[14.5px] leading-[1.8]" style={d(450)}>
         {hero.lede}
       </p>
 
-      <div className="mt-[44px] flex flex-wrap gap-4">
+      <div className="appear mt-6 flex flex-wrap gap-x-6 gap-y-1 text-[13px]" style={d(550)}>
+        {hero.facts.map((f) => (
+          <span key={f.k}>
+            <span className="text-dim">{f.k.toLowerCase()}=</span>
+            <span className="text-string">&quot;{f.v}&quot;</span>
+          </span>
+        ))}
+      </div>
+
+      <div className="appear mt-9 flex flex-wrap gap-3 text-[13.5px]" style={d(700)}>
         <a
-          className="btn btn-primary inline-flex items-center gap-[10px] border border-accent px-6 py-[13px] font-mono text-[13px] tracking-[0.04em] text-accent no-underline"
+          href="#projects"
+          className="rounded-md border border-accent bg-accent px-4 py-2.5 font-bold text-bg transition-opacity hover:opacity-85"
+        >
+          projeleri_gör()
+        </a>
+        <a
           href={site.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-md border border-line px-4 py-2.5 text-fg transition-colors hover:border-accent"
         >
-          <GitHubIcon />
-          GitHub
+          <GitHubIcon /> github ↗
         </a>
         <a
-          className="btn btn-ghost inline-flex items-center gap-[10px] border border-white/[0.18] px-6 py-[13px] font-mono text-[13px] tracking-[0.04em] text-[#c9c6bd] no-underline"
           href={site.linkedinUrl}
           target="_blank"
           rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-md border border-line px-4 py-2.5 text-fg transition-colors hover:border-accent"
         >
-          <LinkedInIcon />
-          LinkedIn
+          <LinkedInIcon /> linkedin ↗
         </a>
       </div>
-    </header>
+
+      <p className="appear m-0 mt-10 flex items-center gap-2 text-[12.5px]" style={d(850)}>
+        <span className="h-2 w-2 rounded-full bg-accent ring-4 ring-accent/15" />
+        <span className="text-fg">{hero.status}</span>
+      </p>
+    </section>
   );
 }

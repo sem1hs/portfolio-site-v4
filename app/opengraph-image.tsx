@@ -16,50 +16,26 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0d0d0f",
-          padding: "80px",
-          fontFamily: "sans-serif",
+          background: "#111111",
+          color: "#a3a3a3",
+          padding: "72px",
+          fontFamily: "monospace",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "18px" }}>
-          <div style={{ width: "48px", height: "2px", background: "#c99b52" }} />
-          <div
-            style={{
-              color: "#c99b52",
-              fontSize: "24px",
-              letterSpacing: "6px",
-              textTransform: "uppercase",
-            }}
-          >
-            {site.role}
-          </div>
+        <div style={{ display: "flex", fontSize: "28px", color: "#ededed" }}>
+          semih<span style={{ color: "#f5a524" }}>@</span>sahinoglu:<span style={{ color: "#e8d5a8" }}>~</span>$
         </div>
-
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div
-            style={{
-              color: "#f4f1ea",
-              fontSize: "104px",
-              fontWeight: 600,
-              lineHeight: 1.05,
-            }}
-          >
+          <div style={{ display: "flex", color: "#f5a524", fontSize: "30px" }}>$ whoami</div>
+          <div style={{ display: "flex", color: "#ededed", fontSize: "92px", fontWeight: 700, marginTop: "16px" }}>
             {site.name}
           </div>
-          <div
-            style={{
-              color: "#a5a29a",
-              fontSize: "34px",
-              marginTop: "24px",
-              maxWidth: "900px",
-            }}
-          >
-            Java · Kotlin · Spring · Next.js · TypeScript
+          <div style={{ display: "flex", color: "#e8d5a8", fontSize: "38px", marginTop: "16px" }}>
+            &gt; {site.role}
           </div>
         </div>
-
-        <div style={{ display: "flex", color: "#807d76", fontSize: "26px" }}>
-          {site.githubUrl.replace("https://", "")}
+        <div style={{ display: "flex", color: "#f5a524", fontSize: "26px" }}>
+          java kotlin spring-boot kafka redis next.js
         </div>
       </div>
     ),

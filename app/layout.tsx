@@ -1,30 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import type { CSSProperties } from "react";
-import { Cormorant_Garamond, Lora, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import { site, skills } from "@/lib/constants";
 import "./globals.css";
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from "@vercel/analytics/next";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-const lora = Lora({
-  variable: "--font-lora",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
+const jetbrains = JetBrains_Mono({
   variable: "--font-jetbrains",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -73,7 +56,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0d0d0f",
+  themeColor: "#111111",
   colorScheme: "dark",
 };
 
@@ -88,8 +71,10 @@ const jsonLd = {
       email: `mailto:${site.email}`,
       url: site.url,
       image: `${site.url}/opengraph-image`,
+      address: { "@type": "PostalAddress", addressLocality: "Istanbul", addressCountry: "TR" },
+      alumniOf: { "@type": "CollegeOrUniversity", name: "Istanbul Gelisim University" },
       sameAs: [site.githubUrl, site.linkedinUrl],
-      knowsAbout: [...skills.items],
+      knowsAbout: [...skills.marquee],
     },
     {
       "@type": "WebSite",
@@ -107,12 +92,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang={site.lang}
-      className={`${cormorant.variable} ${lora.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${jetbrains.variable} h-full antialiased`}
     >
-      <body
-        className="min-h-full bg-bg text-fg font-body"
-        style={{ "--color-accent": site.accentColor } as CSSProperties}
-      >
+      <body className="min-h-full bg-bg font-mono text-muted">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
